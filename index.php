@@ -207,12 +207,6 @@
 
         <div class="form-group">
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
             <button type="submit" class="btn btn-primary" id="btn_start" name="btn_start" value="wo_start"> เริ่มงาน </button>
           </div>
         </div>
@@ -220,6 +214,12 @@
         <div class="form-group">
           <div class="col-sm-12">
             <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
           </div>
         </div>
 
