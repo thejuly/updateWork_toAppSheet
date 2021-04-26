@@ -60,7 +60,7 @@
 
 
   // not click any button
-  if ($_POST["MM_insert"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "") {
+  if ($_POST["MM_insert"] == "" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "") {
         $post_btn_start = $_POST["btn_start"];
         $post_btn_close = $_POST["btn_close"];
         $method = 'do_nothing';
@@ -78,8 +78,23 @@
 
   }
 
+    // click btn_postpone
+    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "wo_postpone" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "") {
+        $post_btn_start = $_POST["btn_start"];
+        $post_btn_close = $_POST["btn_close"];
+        $method = 'postpone_work';
+
+        echo $_SESSION['uuid'] . "<br>";
+        //echo $post_btn_start . "<br>";
+        //echo $post_btn_close . "<br>";
+        
+
+        //(url, uuid, method)
+        $rnt_data = c_url($url_app_script,$post_uuid,$method);
+  }
+  
   // click btn_start
-  if ($_POST["MM_insert"] == "form1" && $_POST["btn_start"] == "wo_start" && $_POST["btn_close"] == "") {
+  if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "wo_start" && $_POST["btn_close"] == "") {
         $post_btn_start = $_POST["btn_start"];
         $post_btn_close = $_POST["btn_close"];
         $method = 'start_work';
@@ -94,7 +109,7 @@
   }
 
     // click btn_close
-    if ($_POST["MM_insert"] == "form1" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "wo_close") {
+    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "wo_close") {
         $post_btn_start = $_POST["btn_start"];
         $post_btn_close = $_POST["btn_close"];
         $method = 'close_work';
@@ -190,16 +205,21 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
+          </div>
+        </div>
 
         <div class="form-group">
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary" id="btn_start" name="btn_start" value="wo_start"> Start work </button>
+            <button type="submit" class="btn btn-primary" id="btn_start" name="btn_start" value="wo_start"> เริ่มงาน </button>
           </div>
         </div>
 		
         <div class="form-group">
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> Close work </button>
+            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน </button>
           </div>
         </div>
 
