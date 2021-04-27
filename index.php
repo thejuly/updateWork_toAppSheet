@@ -45,6 +45,35 @@
                 background-color: #dddddd;
                 }
         </style>
+
+        <style>
+        /* Red border */
+        hr.new1 {
+          border-top: 1px solid red;
+        }
+
+        /* Dashed red border */
+        hr.new2 {
+          border-top: 1px dashed red;
+        }
+
+        /* Dotted red border */
+        hr.new3 {
+          border-top: 1px dotted red;
+        }
+
+        /* Thick red border */
+        hr.new4 {
+          border: 1px solid red;
+        }
+
+        /* Large rounded green border */
+        hr.new5 {
+          border: 10px solid green;
+          border-radius: 5px;
+        }
+        </style>
+
 </head>
 <body>
 
@@ -59,10 +88,10 @@
   
 
 
+
   // not click any button
-  if ($_POST["MM_insert"] == "" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "") {
-        $post_btn_start = $_POST["btn_start"];
-        $post_btn_close = $_POST["btn_close"];
+  if ($_POST["MM_insert"] == "" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
+
         $method = 'do_nothing';
         
         echo $_SESSION['uuid'] . "<br>";
@@ -70,31 +99,31 @@
         //echo $post_btn_start . "<br>";
         //echo $post_btn_close . "<br>";
 
-        //(url, uuid, method)
+        //(url, uuid, method, %update,1)
         //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing');
-        $rnt_data = c_url($url_app_script,$post_uuid,$method);
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"0","2");
 
 
 
   }
 
-    // click btn_postpone
-    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "wo_postpone" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "") {
-        $post_btn_start = $_POST["btn_start"];
-        $post_btn_close = $_POST["btn_close"];
-        $method = 'postpone_work';
+  // click btn_postpone
+  if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "wo_postpone" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
+      $post_btn_start = $_POST["btn_start"];
+      $post_btn_close = $_POST["btn_close"];
+      $method = 'postpone_work';
 
-        echo $_SESSION['uuid'] . "<br>";
-        //echo $post_btn_start . "<br>";
-        //echo $post_btn_close . "<br>";
-        
+      echo $_SESSION['uuid'] . "<br>";
+      //echo $post_btn_start . "<br>";
+      //echo $post_btn_close . "<br>";
+      
 
-        //(url, uuid, method)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method);
+      //(url, uuid, method, %update,1)
+      $rnt_data = c_url($url_app_script,$post_uuid,$method,"0","2");
   }
   
   // click btn_start
-  if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "wo_start" && $_POST["btn_close"] == "") {
+  if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "wo_start" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
         $post_btn_start = $_POST["btn_start"];
         $post_btn_close = $_POST["btn_close"];
         $method = 'start_work';
@@ -104,14 +133,14 @@
         //echo $post_btn_close . "<br>";
         
 
-        //(url, uuid, method)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method);
+        //(url, uuid, method, %update,1)
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"0","2");
   }
 
     // click btn_close
-    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "wo_close") {
-        $post_btn_start = $_POST["btn_start"];
-        $post_btn_close = $_POST["btn_close"];
+    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "wo_close" && $_POST["btn_update"] == "") {
+        $post_Jobupdate = $_POST["jobUpdate"];
+        $planUpdate = $_POST["planUpdate"];
         $method = 'close_work';
 
         echo $_SESSION['uuid'] . "<br>";
@@ -119,15 +148,38 @@
         //echo $post_btn_close . "<br>";
         
 
-        //(url, uuid, method)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method);
+        //(url, uuid, method, %update,1)
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
   }
 
 
-  function c_url($url_app_script, $uuid, $method) {
-        //$url = 'https://script.google.com/macros/s/AKfycbyKAKaGkYQkVJaM2YIa_wQus6IsjA8ufL20r5r1Vp-BGMRVeok/exec'.'?uuid='.$uuid.'&method='.$method;
-        //$url = 'https://script.google.com/macros/s/AKfycbyKAKaGkYQkVJaM2YIa_wQus6IsjA8ufL20r5r1Vp-BGMRVeok/exec?uuid=d149fb78&method=do_nothing';
-        $url = $url_app_script.'?uuid='.$uuid.'&method='.$method;
+    // click btn_update
+    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "wo_update") {
+          $post_Jobupdate = $_POST["jobUpdate"];
+          $planUpdate = $_POST["planUpdate"];
+          
+          $method = 'wo_update';
+          
+          echo $_SESSION['uuid'] . "<br>";
+  
+          //echo $post_btn_start . "<br>";
+          //echo $post_btn_close . "<br>";
+  
+          //(url, uuid, method, %update,1)
+          //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing', 100, 1);
+          $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
+  
+  
+  
+    }
+
+    
+  function c_url($url_app_script, $uuid, $method,$update,$plan) {
+        //$method = do_nothing;
+        //$url = 'https://script.google.com/macros/s/AKfycbyKAKaGkYQkVJaM2YIa_wQus6IsjA8ufL20r5r1Vp-BGMRVeok/exec'.'?uuid='.$uuid.'&method='.$method&update=10&plan=1;
+        //$url = 'https://script.google.com/macros/s/AKfycbyKAKaGkYQkVJaM2YIa_wQus6IsjA8ufL20r5r1Vp-BGMRVeok/exec?uuid=d149fb78&method=do_nothing&update10=&plan=1';
+        $url = $url_app_script.'?uuid='.$uuid.'&method='.$method.'&update='.$update.'&plan='.$plan;
+        //echo $url;
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -152,12 +204,12 @@
         //$uuid = $data->wo;
         //echo $data->uuid . "<br>";
         //echo $uuid. "<br>";
+
+    
         
         return $data;
       }
 ?>
-
-
 
 
 
@@ -186,7 +238,10 @@
         <div class="form-group">
           <div class="col-sm-12">
            <label for="s_tatus">Status</label>
-           <input type="text" id="status" name="status" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->status);?>" />
+           <input type="text" id="status" name="status" class="form-control" autocomplete="off" value = "<?php echo (
+             $rnt_data->status.', (คืบหน้า: '.
+             $rnt_data->maxUpdate.'), (ประเมินงาน: '.
+             $rnt_data->plan.')');?>" />
           </div>
         </div>
 
@@ -213,15 +268,48 @@
 		
         <div class="form-group">
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน </button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
             <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
           </div>
         </div>
+
+        <!--<hr class="new4">-->
+
+        
+        
+  
+        <div class="form-group">
+
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" id="btn" name="btn_update" value="wo_update"> Update % & ความคืบหน้างาน </button>
+          </div>
+
+          <div class="col-sm-12">
+            <select class="form-control" id="jobUpdate" name="jobUpdate">
+              <option value= 10>10%</option>
+              <option value= 20>20%</option>
+              <option value= 30>30%</option>
+              <option value= 40>40%</option>
+              <option value= 50>50%</option>
+              <option value= 60>60%</option>
+              <option value= 70>70%</option>
+              <option value= 80>80%</option>
+              <option value= 90>90%</option>
+              <option value= 100>100%</option>
+              </select>
+          </div>
+          <div class="col-sm-12">
+              <select class="form-control" id="planUpdate" name="planUpdate">
+                <option value="2">อยู่ในแผน</option>
+                <option value="1">เร็วกว่าแผน</option>
+                <option value="3">ล่าช้ากว่าแผน</option>
+              </select>
+          </div>
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน</button>
+          </div>
+        </div>
+
+
 
 	<div class="form-group">
           <div class="col-sm-12">
