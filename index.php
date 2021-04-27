@@ -280,7 +280,7 @@
         <div class="form-group">
 
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary" id="btn" name="btn_update" value="wo_update"> Update % & ความคืบหน้างาน </button>
+            <button type="submit" class="btn btn-primary" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
           </div>
 
           <div class="col-sm-12">
