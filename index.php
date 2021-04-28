@@ -305,7 +305,7 @@
               </select>
           </div>
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน</button>
+            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> Update + ปิดงาน</button>
           </div>
         </div>
 
