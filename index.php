@@ -101,7 +101,7 @@
 
         //(url, uuid, method, %update,plan)
         //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing');
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,"","");
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
 
         if(!$rnt_data->maxUpdate){
           $rnt_data->maxUpdate = "- ";
@@ -124,7 +124,7 @@
       
 
       //(url, uuid, method, %update,plan)
-      $rnt_data = c_url($url_app_script,$post_uuid,$method,"","");
+      $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
 
       if(!$rnt_data->maxUpdate){
         $rnt_data->maxUpdate = "- ";
@@ -147,7 +147,7 @@
         
 
         //(url, uuid, method, %update,plan)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,"","");
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
         
         if(!$rnt_data->maxUpdate){
           $rnt_data->maxUpdate = "- ";
@@ -201,7 +201,7 @@
           if(!$rnt_data->maxUpdate){
             $rnt_data->maxUpdate = "- ";
           }
-  
+  echo $rnt_data->plan;
           if(!$rnt_data->plan){
             $rnt_data->plan = "- ";
           }    
