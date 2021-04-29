@@ -99,12 +99,17 @@
         //echo $post_btn_start . "<br>";
         //echo $post_btn_close . "<br>";
 
-        //(url, uuid, method, %update,1)
+        //(url, uuid, method, %update,plan)
         //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing');
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,"0","2");
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"","");
 
+        if(!$rnt_data->maxUpdate){
+          $rnt_data->maxUpdate = "- ";
+        }
 
-
+        if(!$rnt_data->plan){
+          $rnt_data->plan = "- ";
+        }        
   }
 
   // click btn_postpone
@@ -118,8 +123,16 @@
       //echo $post_btn_close . "<br>";
       
 
-      //(url, uuid, method, %update,1)
-      $rnt_data = c_url($url_app_script,$post_uuid,$method,"0","2");
+      //(url, uuid, method, %update,plan)
+      $rnt_data = c_url($url_app_script,$post_uuid,$method,"","");
+
+      if(!$rnt_data->maxUpdate){
+        $rnt_data->maxUpdate = "- ";
+      }
+
+      if(!$rnt_data->plan){
+        $rnt_data->plan = "- ";
+      }        
   }
   
   // click btn_start
@@ -133,8 +146,16 @@
         //echo $post_btn_close . "<br>";
         
 
-        //(url, uuid, method, %update,1)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,"0","2");
+        //(url, uuid, method, %update,plan)
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"","");
+        
+        if(!$rnt_data->maxUpdate){
+          $rnt_data->maxUpdate = "- ";
+        }
+
+        if(!$rnt_data->plan){
+          $rnt_data->plan = "- ";
+        }          
   }
 
     // click btn_close
@@ -148,8 +169,16 @@
         //echo $post_btn_close . "<br>";
         
 
-        //(url, uuid, method, %update,1)
+        //(url, uuid, method, %update,plan)
         $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
+        
+        if(!$rnt_data->maxUpdate){
+          $rnt_data->maxUpdate = "- ";
+        }
+
+        if(!$rnt_data->plan){
+          $rnt_data->plan = "- ";
+        }          
   }
 
 
@@ -165,11 +194,17 @@
           //echo $post_btn_start . "<br>";
           //echo $post_btn_close . "<br>";
   
-          //(url, uuid, method, %update,1)
+          //(url, uuid, method, %update,plan)
           //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing', 100, 1);
           $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
   
+          if(!$rnt_data->maxUpdate){
+            $rnt_data->maxUpdate = "- ";
+          }
   
+          if(!$rnt_data->plan){
+            $rnt_data->plan = "- ";
+          }    
   
     }
 
