@@ -313,13 +313,14 @@
         
   
         <div class="form-group">
-
+            <br>
           <div class="col-sm-12">
             <button type="submit" class="btn btn-primary" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
           </div>
 
           <div class="col-sm-12">
-            <select class="form-control" id="jobUpdate" name="jobUpdate">
+            <select class="form-control" id="jobUpdate" name="jobUpdate" >
+              <option value="" disabled selected>ระบุ % ทุกครั้งที่มีการ Update หรือ ปิดงาน</option>
               <option value= 10>10%</option>
               <option value= 20>20%</option>
               <option value= 30>30%</option>
@@ -332,15 +333,17 @@
               <option value= 100>100%</option>
               </select>
           </div>
+
           <div class="col-sm-12">
               <select class="form-control" id="planUpdate" name="planUpdate">
+              <!--<option value="" disabled selected>ประเมินงานทุกครั้งที่มีการ Update หรือ ปิดงาน</option>-->
                 <option value="2">อยู่ในแผน</option>
                 <option value="1">เร็วกว่าแผน</option>
                 <option value="3">ล่าช้ากว่าแผน</option>
               </select>
           </div>
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> Update + ปิดงาน</button>
+            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน</button>
           </div>
         </div>
 
