@@ -87,14 +87,13 @@
   //echo $post_uuid . "<br>";
   
 
-
-
   // not click any button
-  if ($_POST["MM_insert"] == "" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
+  if (($_POST["MM_insert"] == "") && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
+    //if ($_POST["btn_postpone"] == "" && $_POST["btn_start"] == "") {
 
         $method = 'do_nothing';
-        
-        echo $_SESSION['uuid'] . "<br>";
+
+        //echo $_SESSION['uuid'] . "<br>";
 
         //echo $post_btn_start . "<br>";
         //echo $post_btn_close . "<br>";
@@ -118,7 +117,7 @@
       $post_btn_close = $_POST["btn_close"];
       $method = 'postpone_work';
 
-      echo $_SESSION['uuid'] . "<br>";
+      //echo $_SESSION['uuid'] . "<br>";
       //echo $post_btn_start . "<br>";
       //echo $post_btn_close . "<br>";
       
@@ -141,7 +140,7 @@
         $post_btn_close = $_POST["btn_close"];
         $method = 'start_work';
 
-        echo $_SESSION['uuid'] . "<br>";
+        //echo $_SESSION['uuid'] . "<br>";
         //echo $post_btn_start . "<br>";
         //echo $post_btn_close . "<br>";
         
@@ -159,19 +158,19 @@
   }
 
     // click btn_close
-    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "wo_close" && $_POST["btn_update"] == "") {
+    if ($_POST["MM_insert1"] == "form2" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "wo_close" && $_POST["btn_update"] == "") {
         $post_Jobupdate = $_POST["jobUpdate"];
         $planUpdate = $_POST["planUpdate"];
         $method = 'close_work';
 
-        echo $_SESSION['uuid'] . "<br>";
+        //echo $_SESSION['uuid'] . "<br>";
         //echo $post_btn_start . "<br>";
         //echo $post_btn_close . "<br>";
         
 
         //(url, uuid, method, %update,plan)
         $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
-        
+/*
         if(!$rnt_data->maxUpdate){
           $rnt_data->maxUpdate = "- ";
         }
@@ -179,17 +178,31 @@
         if(!$rnt_data->plan){
           $rnt_data->plan = "- ";
         }          
+*/
+        if($planUpdate=="1"){
+          $rnt_data->plan = "เร็วกว่าแผน ";
+        }
+        if($planUpdate=="2"){
+          $rnt_data->plan = "อยู่ในแผน ";
+        }
+        if($planUpdate=="3"){
+          $rnt_data->plan = "ล่าช้ากว่าแผน ";
+        }
+
+        $rnt_data->maxUpdate = $post_Jobupdate;
   }
 
 
     // click btn_update
-    if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "wo_update") {
+    if ($_POST["MM_insert1"] == "form2" && $_POST["btn_postpone"] == "" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "wo_update") {
           $post_Jobupdate = $_POST["jobUpdate"];
           $planUpdate = $_POST["planUpdate"];
-          
+
+
           $method = 'wo_update';
           
-          echo $_SESSION['uuid'] . "<br>";
+          
+          //echo $_SESSION['uuid'] . "<br>";
   
           //echo $post_btn_start . "<br>";
           //echo $post_btn_close . "<br>";
@@ -197,15 +210,27 @@
           //(url, uuid, method, %update,plan)
           //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing', 100, 1);
           $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
-  
+  /*
           if(!$rnt_data->maxUpdate){
             $rnt_data->maxUpdate = "- ";
           }
-  echo $rnt_data->plan;
+          //echo $rnt_data->plan;
           if(!$rnt_data->plan){
             $rnt_data->plan = "- ";
           }    
-  
+  */
+
+        if($planUpdate=="1"){
+          $rnt_data->plan = "เร็วกว่าแผน ";
+        }
+        if($planUpdate=="2"){
+          $rnt_data->plan = "อยู่ในแผน ";
+        }
+        if($planUpdate=="3"){
+          $rnt_data->plan = "ล่าช้ากว่าแผน ";
+        }
+
+        $rnt_data->maxUpdate = $post_Jobupdate;
     }
 
     
@@ -248,11 +273,10 @@
 
 
 
-
+<!--From 1-->
 <div class="container" style="padding-top:10px">
-
-    <div class="col-md-4" style="background-color:#D6EAF8">
-	<h3 align="center">Work order infomation</h3>
+    <div class="col-md-8" style="background-color:#D6EAF8">
+	<h3 align="center" style="padding-top:10px">Work order infomation</h3>
         <br>
 
       <form  name="form1" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
@@ -310,17 +334,37 @@
         <!--<hr class="new4">-->
 
         
-        
+ 
+
+
+
+      <div class="form-group">
+              <div class="col-sm-12">
+          <input type="hidden" name="MM_insert" value="form1">
+              </div>
+            </div>
+          </form>
+    </div>
+
+</div>
+
+
+<!--From 2-->
+<div class="container" style="padding-top:10px">
+  <div class="col-md-8" style="background-color:#D6EAF8">
+  <h3 align="center" style="padding-top:10px">Close/Update work</h3>
+  <form  name="form2" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
+       
   
-        <div class="form-group">
+  <div class="form-group">
             <br>
           <div class="col-sm-12">
             <button type="submit" class="btn btn-primary" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
           </div>
 
           <div class="col-sm-12">
-            <select class="form-control" id="jobUpdate" name="jobUpdate" >
-              <option value="" disabled selected>ระบุ % ทุกครั้งที่มีการ Update หรือ ปิดงาน</option>
+            <select class="form-control" id="jobUpdate" required name="jobUpdate" >
+              <option value="" disabled selected>ระบุเปอร์เซนต์</option>
               <option value= 10>10%</option>
               <option value= 20>20%</option>
               <option value= 30>30%</option>
@@ -335,8 +379,8 @@
           </div>
 
           <div class="col-sm-12">
-              <select class="form-control" id="planUpdate" name="planUpdate">
-              <!--<option value="" disabled selected>ประเมินงานทุกครั้งที่มีการ Update หรือ ปิดงาน</option>-->
+              <select class="form-control" id="planUpdate" required name="planUpdate">
+                <!--<option value="" disabled selected>ความคืบหน้า</option>-->
                 <option value="2">อยู่ในแผน</option>
                 <option value="1">เร็วกว่าแผน</option>
                 <option value="3">ล่าช้ากว่าแผน</option>
@@ -346,22 +390,29 @@
             <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน</button>
           </div>
         </div>
-
-
-
-	<div class="form-group">
-          <div class="col-sm-12">
-	    <input type="hidden" name="MM_insert" value="form1">
-          </div>
-        </div>
-      </form>
-</div>
-
-
-<form  name="form2" class="form-horizontal">
         <div class="form-group">
-        </div>
-</form>
+              <div class="col-sm-12">
+          <input type="hidden" name="MM_insert1" value="form2">
+              </div>
+            </div>
+          </form>
+    </div>
+
+  </form>
+
+
+</div>  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
