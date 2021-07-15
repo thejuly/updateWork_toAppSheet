@@ -13,3 +13,20 @@ www.heroku.com (User:dcsbailey21574@gmail.com Pass:Sxxxxxxxxxx4)
 **7.** git remote remove origin (if necessary)
 web page (heroku)
 https://github.com/thejuly/googleSearch.git 
+
+
+#############################
+…or create a new repository on the command line
+echo "# mqtt-sse" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/thejuly/mqtt-sse.git
+git push -u origin main
+
+###########################
+…or push an existing repository from the command line
+git remote add origin https://github.com/thejuly/mqtt-sse.git
+git branch -M main
+git push -u origin main
