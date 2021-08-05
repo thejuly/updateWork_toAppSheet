@@ -8,13 +8,38 @@
         <title>Update Work</title>
         
         <meta charset="utf-8">
+
+	  <!-- calendar stylesheet -->
+	  <link rel="stylesheet" type="text/css" media="all" href="calendar-win2k-cold-1.css" title="win2k-cold-1" />
+	
+	  <!-- main calendar program -->
+	  <script type="text/javascript" src="calendar.js"></script>
+	
+	  <!-- language for the calendar -->
+	  <script type="text/javascript" src="lang/calendar-en.js"></script>
+	
+	  <!-- the following script defines the Calendar.setup helper function, which makes
+		   adding a calendar a matter of 1 or 2 lines of code. -->
+	  <script type="text/javascript" src="calendar-setup.js"></script>
+
+
+
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="jquery.min.js"></script>
-        <script type="text/javascript" src="qrcode.js"></script>
+
+
+    <!--Date picker-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
   
         <style type="text/css">
                 #btn{
@@ -100,7 +125,12 @@
 
         //(url, uuid, method, %update,plan)
         //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing');
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
+        //$rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate,"");
+        
+        //print_r($rnt_data);
+        //echo('<br>');
+        //echo($rnt_data->compDate);
 
         if(!$rnt_data->maxUpdate){
           $rnt_data->maxUpdate = "- ";
@@ -112,19 +142,27 @@
   }
 
   // click btn_postpone
-  if ($_POST["MM_insert"] == "form1" && $_POST["btn_postpone"] == "wo_postpone" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
+  if ($_POST["MM_insert2"] == "form3" && $_POST["btn_postpone"] == "wo_postpone" && $_POST["btn_start"] == "" && $_POST["btn_close"] == "" && $_POST["btn_update"] == "") {
       $post_btn_start = $_POST["btn_start"];
       $post_btn_close = $_POST["btn_close"];
       $method = 'postpone_work';
+      $completeDate = $_POST["completeDate"];
 
       //echo $_SESSION['uuid'] . "<br>";
       //echo $post_btn_start . "<br>";
       //echo $post_btn_close . "<br>";
       
+      //echo $completeDate . "<br>";
+      $date = $completeDate;//"07/12/2010"; ///8/4/2021 17:00:00
+      $datePostpone = date("m/d/Y H:i:s", strtotime($date));
+      //echo $datePostpone . "<br>";
+      $datePostpone = urlEncode($datePostpone);
+      //echo $datePostpone . "<br>";
 
       //(url, uuid, method, %update,plan)
-      $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
-
+      //$rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
+      $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate, $datePostpone);
+      
       if(!$rnt_data->maxUpdate){
         $rnt_data->maxUpdate = "- ";
       }
@@ -143,10 +181,12 @@
         //echo $_SESSION['uuid'] . "<br>";
         //echo $post_btn_start . "<br>";
         //echo $post_btn_close . "<br>";
+        echo $post_btn_close . "<br>";
         
 
         //(url, uuid, method, %update,plan)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
+        //$rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate);
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,"",$planUpdate, "");
         
         if(!$rnt_data->maxUpdate){
           $rnt_data->maxUpdate = "- ";
@@ -169,7 +209,8 @@
         
 
         //(url, uuid, method, %update,plan)
-        $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
+        //$rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
+        $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate, "");
 /*
         if(!$rnt_data->maxUpdate){
           $rnt_data->maxUpdate = "- ";
@@ -209,7 +250,8 @@
   
           //(url, uuid, method, %update,plan)
           //$rnt_data = c_url($url_app_script,'d149fb78','do_nothing', 100, 1);
-          $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
+          //$rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate);
+          $rnt_data = c_url($url_app_script,$post_uuid,$method,$post_Jobupdate,$planUpdate, "");
   /*
           if(!$rnt_data->maxUpdate){
             $rnt_data->maxUpdate = "- ";
@@ -233,12 +275,12 @@
         $rnt_data->maxUpdate = $post_Jobupdate;
     }
 
-    
-  function c_url($url_app_script, $uuid, $method,$update,$plan) {
+    //c_url($url_app_script,$post_uuid,$method,"",$planUpdate, $datePostpone);
+  function c_url($url_app_script, $uuid, $method,$update,$plan,$compDate) {
         //$method = do_nothing;
         //$url = 'https://script.google.com/macros/s/AKfycbyKAKaGkYQkVJaM2YIa_wQus6IsjA8ufL20r5r1Vp-BGMRVeok/exec'.'?uuid='.$uuid.'&method='.$method&update=10&plan=1;
         //$url = 'https://script.google.com/macros/s/AKfycbyKAKaGkYQkVJaM2YIa_wQus6IsjA8ufL20r5r1Vp-BGMRVeok/exec?uuid=d149fb78&method=do_nothing&update10=&plan=1';
-        $url = $url_app_script.'?uuid='.$uuid.'&method='.$method.'&update='.$update.'&plan='.$plan;
+        $url = $url_app_script.'?uuid='.$uuid.'&method='.$method.'&update='.$update.'&plan='.$plan.'&compDate='.$compDate;
         //echo $url;
 
         $curl = curl_init();
@@ -306,8 +348,8 @@
 
         <div class="form-group">
           <div class="col-sm-12">
-           <label for="row_no">Row No.</label>
-           <input type="text" id="rowNo" name="rowNo" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->rowNo);?>" />
+           <label for="row_no">Complete Date</label>
+           <input type="text" id="rowNo" name="rowNo" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->compDate .'     (Row No. = ' .  $rnt_data->rowNo . ')');?>" />
           </div>
         </div>
 
@@ -325,11 +367,6 @@
           </div>
         </div>
 		
-        <div class="form-group">
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
-          </div>
-        </div>
 
         <!--<hr class="new4">-->
 
@@ -404,7 +441,46 @@
 </div>  
 
 
+<!--From 3-->
+<div class="container" style="padding-top:10px">
+  <div class="col-md-8" style="background-color:#D6EAF8">
+    <h3 align="center" style="padding-top:10px">Posepone work</h3>
+    <form  name="form2" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
+       
+    <div class="form-group">
+      <br>
+      <div class="form-group">
+        
+        <div class="col-sm-12">
+          <div class="input-group date " id="datetimepicker10">
+              <input type="text" name="completeDate" class="form-control" required placeholder="Complete Date" autocomplete="off" required>
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar">
+              </span>
+              </span>
+          </div>
+        </div>
 
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="hidden" name="MM_insert2" value="form3">
+      </div>
+    </div>
+
+    </form>
+
+  </div>
+
+    </form>
+</div>  
 
 
 
@@ -786,3 +862,23 @@ $user_data = json_decode($curl_data);
 print_r($user_data);
 */
 ?>
+
+
+
+
+
+
+<script type="text/javascript">
+      $(function () {
+          $('#datetimepicker10').datetimepicker({
+              //defaultDate: new Date(1990, 0, 1, 00, 01),
+              //8/4/2021 17:00:00
+              //viewMode: 'years',
+              //daysOfWeekDisabled: [0, 6]
+              //locale: 'th'
+              //format: 'MM/DD/YYYY HH:MM:SS'
+              //format: 'MM/DD/YYYY HH:MM:SS'
+
+          });
+      });
+   </script>
