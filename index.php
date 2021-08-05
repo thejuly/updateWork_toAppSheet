@@ -9,19 +9,6 @@
         
         <meta charset="utf-8">
 
-	  <!-- calendar stylesheet -->
-	  <link rel="stylesheet" type="text/css" media="all" href="calendar-win2k-cold-1.css" title="win2k-cold-1" />
-	
-	  <!-- main calendar program -->
-	  <script type="text/javascript" src="calendar.js"></script>
-	
-	  <!-- language for the calendar -->
-	  <script type="text/javascript" src="lang/calendar-en.js"></script>
-	
-	  <!-- the following script defines the Calendar.setup helper function, which makes
-		   adding a calendar a matter of 1 or 2 lines of code. -->
-	  <script type="text/javascript" src="calendar-setup.js"></script>
-
 
 
 
@@ -317,88 +304,87 @@
 
 <!--From 1-->
 <div class="container" style="padding-top:10px">
-    <div class="col-md-8" style="background-color:#D6EAF8">
-	<h3 align="center" style="padding-top:10px">Work order infomation</h3>
+  <div class="col-md-8" style="background-color:#D6EAF8">
+    <h3 align="center" style="padding-top:10px">Work order infomation</h3>
         <br>
 
-      <form  name="form1" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
-        <div class="form-group">
-          <div class="col-sm-12">
-           <label for="u_uid">UUID</label>
-           <input type="text" id="uuid" name="uuid" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->uuid);?>" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
-           <label for="w_o">Work order</label>
-           <input type="text" id="wo" name="wo" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->wo);?>" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
-           <label for="s_tatus">Status</label>
-           <input type="text" id="status" name="status" class="form-control" autocomplete="off" value = "<?php echo (
-             $rnt_data->status.', (คืบหน้า: '.
-             $rnt_data->maxUpdate.'), (ประเมินงาน: '.
-             $rnt_data->plan.')');?>" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
-           <label for="row_no">Complete Date</label>
-           <input type="text" id="rowNo" name="rowNo" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->compDate .'     (Row No. = ' .  $rnt_data->rowNo . ')');?>" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
-           <!--<input type="number" name="size" class="form-control" min="50" max="300" placeholder="Spare (Not use)" value="50" />-->
-           <label for="u_uid">Description</label>
-           <textarea name="message" rows="3" cols="30" class="form-control" autocomplete="off"><?php echo ($rnt_data->desc);?></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary" id="btn_start" name="btn_start" value="wo_start"> เริ่มงาน </button>
-          </div>
-        </div>
-		
-
-        <!--<hr class="new4">-->
-
-        
- 
-
-
-
-      <div class="form-group">
-              <div class="col-sm-12">
-          <input type="hidden" name="MM_insert" value="form1">
-              </div>
+        <form  name="form1" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label for="u_uid">UUID</label>
+              <input type="text" id="uuid" name="uuid" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->uuid);?>" />
             </div>
-          </form>
-    </div>
+          </div>
 
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label for="w_o">Work order</label>
+              <input type="text" id="wo" name="wo" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->wo);?>" />
+              </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label for="s_tatus">Status</label>
+              <input type="text" id="status" name="status" class="form-control" autocomplete="off" value = "<?php echo (
+                $rnt_data->status.', (คืบหน้า: '.
+                $rnt_data->maxUpdate.'), (ประเมินงาน: '.
+                $rnt_data->plan.')');?>" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label for="row_no">Complete Date</label>
+              <input type="text" id="rowNo" name="rowNo" class="form-control" autocomplete="off" value = "<?php echo ($rnt_data->compDate .'     (Row No. = ' .  $rnt_data->rowNo . ')');?>" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <!--<input type="number" name="size" class="form-control" min="50" max="300" placeholder="Spare (Not use)" value="50" />-->
+              <label for="u_uid">Description</label>
+              <textarea name="message" rows="3" cols="30" class="form-control" autocomplete="off"><?php echo ($rnt_data->desc);?></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary" id="btn_start" name="btn_start" value="wo_start"> เริ่มงาน </button>
+            </div>
+          </div>
+      
+
+          <!--<hr class="new4">-->
+
+          
+  
+
+
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="hidden" name="MM_insert" value="form1">
+            </div>
+          </div>
+        </form>
+  </div>
 </div>
 
 
 <!--From 2-->
 <div class="container" style="padding-top:10px">
   <div class="col-md-8" style="background-color:#D6EAF8">
-  <h3 align="center" style="padding-top:10px">Close/Update work</h3>
-  <form  name="form2" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
-       
-  
-  <div class="form-group">
-            <br>
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-warning" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
-          </div>
+    <h3 align="center" style="padding-top:10px">Close/Update work</h3>
+    <form  name="form2" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">    
+      <div class="form-group">
+        <br>
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-warning" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
+        </div>
+      </div>
 
+      <div class="form-group">
           <div class="col-sm-12">
             <select class="form-control" id="jobUpdate" required name="jobUpdate" >
               <option value="" disabled selected>ระบุเปอร์เซนต์</option>
@@ -414,7 +400,9 @@
               <option value= 100>100%</option>
               </select>
           </div>
+      </div>
 
+      <div class="form-group">
           <div class="col-sm-12">
               <select class="form-control" id="planUpdate" required name="planUpdate">
                 <!--<option value="" disabled selected>ความคืบหน้า</option>-->
@@ -423,21 +411,21 @@
                 <option value="3">ล่าช้ากว่าแผน</option>
               </select>
           </div>
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน</button>
-          </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-success"id="btn_close" name="btn_close" value="wo_close"> ปิดงาน</button>
         </div>
-        <div class="form-group">
-              <div class="col-sm-12">
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-12">
           <input type="hidden" name="MM_insert1" value="form2">
-              </div>
-            </div>
-          </form>
-    </div>
-
-  </form>
-
-
+        </div>
+      </div>
+    </form>
+  </div>
 </div>  
 
 
@@ -446,11 +434,8 @@
   <div class="col-md-8" style="background-color:#D6EAF8">
     <h3 align="center" style="padding-top:10px">Postpone work</h3>
     <form  name="form2" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
-       
-    <div class="form-group">
       <br>
       <div class="form-group">
-        
         <div class="col-sm-12">
           <div class="input-group date " id="datetimepicker10">
               <input type="text" name="completeDate" class="form-control" required placeholder="Complete Date" autocomplete="off" required>
@@ -460,26 +445,22 @@
               </span>
           </div>
         </div>
+      </div>
 
+      <div class="form-group">
         <div class="col-sm-12">
           <button type="submit" class="btn btn-danger" id="btn" name="btn_postpone" value="wo_postpone"> เลื่อนแผนงาน </button>
         </div>
-
       </div>
 
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <input type="hidden" name="MM_insert2" value="form3">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="hidden" name="MM_insert2" value="form3">
+        </div>
       </div>
-    </div>
-
     </form>
 
   </div>
-
-    </form>
 </div>  
 
 
