@@ -396,7 +396,7 @@
   <div class="form-group">
             <br>
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
+            <button type="submit" class="btn btn-warning" id="btn" name="btn_update" value="wo_update"> Update ความคืบหน้างาน </button>
           </div>
 
           <div class="col-sm-12">
@@ -444,7 +444,7 @@
 <!--From 3-->
 <div class="container" style="padding-top:10px">
   <div class="col-md-8" style="background-color:#D6EAF8">
-    <h3 align="center" style="padding-top:10px">Posepone work</h3>
+    <h3 align="center" style="padding-top:10px">Postpone work</h3>
     <form  name="form2" action="index.php?uuid=<?php echo ($_GET['uuid']);?>" method="POST" id="login" class="form-horizontal">
        
     <div class="form-group">
